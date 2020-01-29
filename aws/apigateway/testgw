@@ -1,0 +1,3 @@
+#!/bin/bash
+
+curl -X POST $(jq -r '.outputs | (.base_url.value +"/"+ .endpoint.value)' terraform.tfstate ) -H "X-Api-Key: $(jq -r '.outputs | .apikey.value' terraform.tfstate)"
