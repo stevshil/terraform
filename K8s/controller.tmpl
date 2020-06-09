@@ -1,0 +1,22 @@
+[all]
+node1 ansible_host=${masterip} ip=${masterip} etcd_member_name=etcd1 ansible_ssh_common_args="-o StrictHostKeyChecking=no"
+node2 ansible_host=${worker1ip} ip=${worker1ip} etcd_member_name=etcd2 ansible_ssh_common_args="-o StrictHostKeyChecking=no"
+node3 ansible_host=${worker2ip} ip=${worker2ip} etcd_member_name=etcd3 ansible_ssh_common_args="-o StrictHostKeyChecking=no"
+
+[kube-master]
+node1
+
+[etcd]
+node1
+node2
+node3
+
+[kube-node]
+node2
+node3
+[calico-rr]
+
+[k8s-cluster:children]
+kube-master
+kube-node
+calico-rr
