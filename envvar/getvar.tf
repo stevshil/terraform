@@ -1,5 +1,5 @@
 data "external" "example" {
- program = ["./mypwd"]
+ program = ["bash","./mypwd"]
 }
 
 output "pwd" {

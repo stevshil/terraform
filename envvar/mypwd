@@ -2,6 +2,6 @@
 
 cat <<_END_ 
 {
-  "dir": "$(pwd)"
+  "dir": "$PWD"
 }
 _END_

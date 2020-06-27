@@ -52,7 +52,7 @@ resource "aws_instance" "controller" {
       "sudo mv /home/ec2-user/tf_rsa /root/.ssh/id_rsa",
       "sudo chown root:root /root/.ssh/id_rsa",
       "sudo chmod 600 /root/.ssh/id_rsa",
-      "echo -e 'cd /root/kubespray\nnohup /usr/local/bin/ansible-playbook -i /home/ec2-user/inventory.ini --become --become-user=root /root/kubespray/cluster.yml >build.log 2>build.err &' >/home/ec2-user/buildcluster",
+      "echo -e 'cd /root/kubespray\nnohup /usr/local/bin/ansible-playbook -i /home/ec2-user/inventory.ini --become --become-user=root /root/kubespray/cluster.yml >build.log 2>&1 &' >/home/ec2-user/buildcluster",
       "chmod 755 /home/ec2-user/buildcluster",
       "sleep 5"
     ]
