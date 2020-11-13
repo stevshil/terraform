@@ -1,0 +1,22 @@
+- name: Install Apache
+  package:
+    name: httpd
+    state: latest
+
+- name: Start Apache and Enable
+  service:
+    name: httpd
+    enabled: true
+    state: started
+
+- name: Set myip variable
+  set_fact:
+    myip: "{{ groups['webservers'][0] }}"
+
+- name: Add index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 0644

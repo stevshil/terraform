@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if (( $# < 1 ))
+then
+	echo "$0 <env>"
+	exit 1
+fi
+
+export AWS_DEFAULT_PROFILE=academy2
+. setenv
+
+cd tfinstance
+terraform init
+if terraform apply -auto-approve -var-file=${1}.tfvars
+then
+	if terraform destroy -auto-approve -var-file=${1}.tfvars
+	then
+		[[ -e ../ansibleprov/environments/dev/hosts ]] && rm ../ansibleprov/environments/dev/hosts
+	fi
+fi

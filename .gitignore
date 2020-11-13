@@ -2,3 +2,4 @@
 **/*.tfstate*
 **/petclinicmysqlopenshift
 **.tfvars
+**/crash.log
